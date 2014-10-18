@@ -6,8 +6,6 @@ ENV LC_ALL C
 ENV DEBIAN_FRONTEND noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN true
 
-#EXPOSE 4444
-
 RUN apt-get update -qq -y
 
 RUN apt-get install -qq -y \
@@ -47,3 +45,9 @@ RUN gsutil cp $(gsutil ls 'gs://selenium-release/**selenium-server-standalone-*.
 
 # delete all the apt list files since they're big and get stale quickly
 RUN rm -rf /var/lib/apt/lists/*
+
+ADD entrypoint .
+
+ENTRYPOINT ["bash", "entrypoint"]
+
+EXPOSE 4444 5900
