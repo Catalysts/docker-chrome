@@ -46,8 +46,8 @@ RUN gsutil cp $(gsutil ls 'gs://selenium-release/**selenium-server-standalone-*.
 # delete all the apt list files since they're big and get stale quickly
 RUN rm -rf /var/lib/apt/lists/*
 
-ADD entrypoint .
+ADD entrypoint.sh .
 
-ENTRYPOINT ["bash", "entrypoint"]
+ENTRYPOINT ["bash", "entrypoint.sh"]
 
 EXPOSE 4444 5900
