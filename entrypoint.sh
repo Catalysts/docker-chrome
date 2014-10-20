@@ -5,6 +5,8 @@ DISPLAY=:1
 SCREEN=0
 RESOLUTION=1920x1080
 
+mkdir -p $ARTIFACTS
+
 function wrap() {
   $@ > $ARTIFACTS/$1.out 2> $ARTIFACTS/$1.err &
 }
