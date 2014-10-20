@@ -17,7 +17,7 @@ wrap Xvfb \
   $RESOLUTION
 
 wrap x11vnc \
-  -geometry $RESOLUTION \
+  -geometry ${RESOLUTION}x24 \
   -display $DISPLAY \
   -shared \
   -forever \
