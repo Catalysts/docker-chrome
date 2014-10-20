@@ -37,3 +37,8 @@ wrap chromedriver \
   --url-base=/wd/hub \
   --whitelisted-ips \
   --verbose
+
+while [ true ] ; do
+  sleep 60
+  echo heartbeat
+done
