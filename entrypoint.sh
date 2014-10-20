@@ -16,6 +16,8 @@ wrap Xvfb \
   -screen $SCREEN \
   ${RESOLUTION}x24
 
+sleep 1
+
 wrap x11vnc \
   -geometry $RESOLUTION \
   -display $DISPLAY \

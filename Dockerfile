@@ -30,4 +30,4 @@ ADD entrypoint.sh .
 
 ENTRYPOINT ["bash", "entrypoint.sh"]
 
-EXPOSE 4444 5900 9222
+EXPOSE 4444 5900
