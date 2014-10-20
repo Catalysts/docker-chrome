@@ -14,10 +14,10 @@ function wrap() {
 wrap Xvfb \
   $DISPLAY \
   -screen $SCREEN \
-  $RESOLUTION
+  ${RESOLUTION}x24
 
 wrap x11vnc \
-  -geometry ${RESOLUTION}x24 \
+  -geometry $RESOLUTION \
   -display $DISPLAY \
   -shared \
   -forever \
