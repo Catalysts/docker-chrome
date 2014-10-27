@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:14.10
 
 MAINTAINER Lorenz Leutgeb <lorenz.leutgeb@catalysts.cc>
 
