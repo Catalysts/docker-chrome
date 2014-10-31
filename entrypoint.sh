@@ -28,7 +28,7 @@ wrap x11vnc \
 wrap avconv \
   -f x11grab \
   -s $RESOLUTION \
-  -i :$DISPLAY.$SCREEN+nomouse \
+  -i $DISPLAY.$SCREEN+nomouse \
   -r 20 \
   -vcodec libvpx \
   $ARTIFACTS/screencast.webm
