@@ -19,7 +19,8 @@ RUN apt-get update -qq -y
 RUN apt-get install -qq -y google-chrome-stable
 RUN google-chrome --version
 
-RUN wget -q https://chromedriver.storage.googleapis.com/$(wget -qO- https://chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip
+#RUN wget -q https://chromedriver.storage.googleapis.com/$(wget -qO- https://chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip
+RUN wget -q https://chromedriver.storage.googleapis.com/2.11/chromedriver_linux64.zip
 RUN unzip -qq chromedriver_linux64.zip -d /usr/bin && rm chromedriver_linux64.zip
 RUN chromedriver --version
 
