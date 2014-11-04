@@ -33,6 +33,9 @@ wrap avconv \
   -vcodec libvpx \
   $ARTIFACTS/screencast.webm
 
+wrap tcpdump \
+  -w $ARTIFACTS/tcpdump.pcap
+
 DISPLAY=$DISPLAY wrap chromedriver \
   --hostname=127.0.0.1 \
   --port=4444 \
