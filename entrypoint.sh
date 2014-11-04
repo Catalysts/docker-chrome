@@ -40,8 +40,7 @@ DISPLAY=$DISPLAY wrap chromedriver \
   --hostname=127.0.0.1 \
   --port=4444 \
   --url-base=/wd/hub \
-  --whitelisted-ips \
-  --verbose
+  --whitelisted-ips
 
 while [ true ] ; do
   sleep 60
