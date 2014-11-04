@@ -26,8 +26,7 @@ RUN wget -qO- http://mirror.pcbeta.com/google/chrome/deb/pool/main/g/google-chro
 RUN dpkg --install google-chrome.deb && rm google-chrome.deb
 RUN google-chrome --version
  
-#RUN wget -q https://chromedriver.storage.googleapis.com/$(wget -qO- https://chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip
-RUN wget -q https://chromedriver.storage.googleapis.com/2.11/chromedriver_linux64.zip
+RUN wget -q https://chromedriver.storage.googleapis.com/$(wget -qO- https://chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip
 RUN unzip -qq chromedriver_linux64.zip -d /usr/bin && rm chromedriver_linux64.zip
 RUN chromedriver --version
 
