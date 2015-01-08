@@ -23,9 +23,6 @@ RUN wget -q https://chromedriver.storage.googleapis.com/$(wget -qO- https://chro
 RUN unzip -qq chromedriver_linux64.zip -d /usr/bin && rm chromedriver_linux64.zip
 RUN chromedriver --version
 
-# delete all the apt list files since they're big and get stale quickly
-RUN rm -rf /var/lib/apt/lists/*
-
 ADD entrypoint.sh .
 
 ENTRYPOINT ["bash", "entrypoint.sh"]
