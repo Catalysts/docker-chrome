@@ -23,7 +23,7 @@ wrap x11vnc \
   -display $DISPLAY \
   -shared \
   -forever \
-  -passwd zinc
+  -passwd stsylatac
 
 wrap avconv \
   -f x11grab \
