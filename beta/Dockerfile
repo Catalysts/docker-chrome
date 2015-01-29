@@ -23,7 +23,7 @@ RUN wget -q https://chromedriver.storage.googleapis.com/$(wget -qO- https://chro
 RUN unzip -qq chromedriver_linux64.zip -d /usr/bin && rm chromedriver_linux64.zip
 RUN chromedriver --version
 
-ADD ../entrypoint.sh .
+ADD entrypoint.sh .
 
 ENTRYPOINT ["bash", "entrypoint.sh"]
 
