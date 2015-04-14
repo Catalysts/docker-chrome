@@ -3,13 +3,24 @@
 ARTIFACTS=/tmp/artifacts
 DISPLAY=:1
 SCREEN=0
-RESOLUTION=1920x1080
+RESOLUTION=1210x810
 
 mkdir -p $ARTIFACTS
 
+children=""
+
 function wrap() {
   $@ > $ARTIFACTS/$1.out 2> $ARTIFACTS/$1.err &
+  child=$!
+  children="$children $child"
 }
+
+function handler() {
+  pkill -INT avconv
+  wait $children
+}
+
+trap handler TERM INT
 
 wrap Xvfb \
   $DISPLAY \
@@ -28,10 +39,10 @@ wrap x11vnc \
 wrap avconv \
   -f x11grab \
   -s $RESOLUTION \
-  -i $DISPLAY.$SCREEN+nomouse \
+  -i $DISPLAY.$SCREEN+0,0 \
   -r 20 \
-  -vcodec libvpx \
-  $ARTIFACTS/screencast.webm
+  -vcodec libx264 \
+  $ARTIFACTS/screencast.mp4
 
 wrap tcpdump \
   -w $ARTIFACTS/tcpdump.pcap
@@ -43,7 +54,4 @@ DISPLAY=$DISPLAY wrap chromedriver \
   --whitelisted-ips \
   --verbose
 
-while [ true ] ; do
-  sleep 60
-  echo heartbeat
-done
+wait $children
