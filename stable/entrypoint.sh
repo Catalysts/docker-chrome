@@ -7,17 +7,17 @@ RESOLUTION=1210x810
 
 mkdir -p $ARTIFACTS
 
-children=""
-
 function wrap() {
   $@ > $ARTIFACTS/$1.out 2> $ARTIFACTS/$1.err &
-  child=$!
-  children="$children $child"
 }
 
 function handler() {
-  pkill -INT avconv
-  wait $children
+  pid=$(pgrep avconv)
+  kill -2 $pid
+  wait $pid
+
+  pkill -9 -P $$
+  wait
 }
 
 trap handler TERM INT
@@ -54,4 +54,4 @@ DISPLAY=$DISPLAY wrap chromedriver \
   --whitelisted-ips \
   --verbose
 
-wait $children
+wait
