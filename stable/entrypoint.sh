@@ -4,23 +4,35 @@ ARTIFACTS=/tmp/artifacts
 DISPLAY=:1
 SCREEN=0
 RESOLUTION=1210x810
+SCREENCASTNR=0
 
 mkdir -p $ARTIFACTS
 
 function wrap() {
-  $@ > $ARTIFACTS/$1.out 2> $ARTIFACTS/$1.err &
+  $@ > $ARTIFACTS/$1.out 2>> $ARTIFACTS/$1.err &
 }
 
 function handler() {
-  pid=$(pgrep avconv)
-  kill -2 $pid
-  wait $pid
+  pkill -2 avconv
+}
 
-  pkill -9 -P $$
+function startNewScreencast() {
+  pkill -2 avconv
+
+  wrap avconv \
+  -f x11grab \
+  -s $RESOLUTION \
+  -i $DISPLAY.$SCREEN+0,0 \
+  -r 20 \
+  -vcodec libx264 \
+  $ARTIFACTS/screencast_$SCREENCASTNR.mp4
+
+  ((SCREENCASTNR++))
   wait
 }
 
 trap handler TERM INT
+trap startNewScreencast SIGUSR1
 
 wrap Xvfb \
   $DISPLAY \
