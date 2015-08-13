@@ -19,7 +19,7 @@ RUN echo 'deb http://dl.google.com/linux/chrome/deb/ stable main' >> /etc/apt/so
 RUN apt-get update -qq -y
 RUN apt-get install -qq -y google-chrome-beta
 
-RUN wget -q https://chromedriver.storage.googleapis.com/$(wget -qO- https://chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip
+RUN wget -q -O chromedriver_linux64.zip http://chromedriver-data.storage.googleapis.com/continuous/$(wget -qO- http://chromedriver-data.storage.googleapis.com/continuous/latest_linux64)
 RUN unzip -qq chromedriver_linux64.zip -d /usr/bin && rm chromedriver_linux64.zip
 RUN chromedriver --version
 
