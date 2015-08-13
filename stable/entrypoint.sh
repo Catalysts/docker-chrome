@@ -12,7 +12,7 @@ function wrap() {
   $@ > $ARTIFACTS/$1.out 2>> $ARTIFACTS/$1.err &
 }
 
-function handler() {
+function intHandler() {
   pkill -2 avconv
 }
 
@@ -31,7 +31,7 @@ function startNewScreencast() {
   wait
 }
 
-trap handler TERM INT
+trap intHandler TERM INT
 trap startNewScreencast SIGUSR1
 
 wrap Xvfb \
