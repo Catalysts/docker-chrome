@@ -17,8 +17,6 @@ function intHandler() {
 }
 
 function startNewScreencast() {
-  pkill -2 avconv
-
   wrap avconv \
   -f x11grab \
   -s $RESOLUTION \
