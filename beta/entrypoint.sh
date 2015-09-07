@@ -46,14 +46,6 @@ wrap x11vnc \
   -forever \
   -passwd stsylatac
 
-wrap avconv \
-  -f x11grab \
-  -s $RESOLUTION \
-  -i $DISPLAY.$SCREEN+nomouse \
-  -r 20 \
-  -vcodec libx264 \
-  $ARTIFACTS/screencast.mp4
-
 wrap tcpdump \
   -w $ARTIFACTS/tcpdump.pcap
 
